@@ -112,6 +112,7 @@ function timeAdder(value1, label1, value2, label2) {
     return [totalSeconds, totalSeconds >=1 ? 'seconds' : 'second'];
     */
 
+    // the answer with bonus here
     for (const lbl of ['day', 'hour', 'minute', 'second']) { // the order is important
         const secs = inSeconds[lbl];
         const remainingSecs = totalSeconds % secs; // mode
