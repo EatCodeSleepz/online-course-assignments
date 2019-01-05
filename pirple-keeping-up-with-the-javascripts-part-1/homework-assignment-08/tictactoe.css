@@ -1,0 +1,57 @@
+/*
+Some of the TicTacToe CSS are taken from web.
+Since this is a JS ES6 homework instead of CSS, it's okay i think?
+With some modifications
+*/
+
+/*
+The concept to generate grid with CSS instead of table
+https://www.w3schools.com/css/css_grid.asp
+*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+
+    width: 420px;
+    height: 420px;
+    padding: 0px 0px 0px 0px;
+}
+
+.grid-item {
+    font-size: 120px;
+    text-align: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0px 0px 0px 0px;
+}
+
+/*
+The TicTacToe board border
+https://codepen.io/xunnn/pen/yEmMbm
+*/
+
+.vert {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.hori {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+/* */
+.grid-item:hover {
+    background-color: cornflowerblue;
+}
+
+.cross {
+    color: red;
+}
+
+.circle {
+    color: black;
+}
