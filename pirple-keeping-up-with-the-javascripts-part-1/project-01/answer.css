@@ -1,0 +1,11 @@
+.no-display {
+    display: none;
+}
+
+.visible {
+    visibility: inherit;
+}
+
+.invisible {
+    visibility: hidden;
+}

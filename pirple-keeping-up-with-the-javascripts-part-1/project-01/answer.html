@@ -1,0 +1,171 @@
+ <html>
+<head>
+<title>Project #1</title>
+
+<script src="answer.js"></script>
+<script src="navigation.js"></script>
+<script src="validation.js"></script>
+<script src="storage.js"></script>
+
+<link rel="stylesheet" href="answer.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="collapse navbar-collapse">
+<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+<li class="nav-item">
+    <a class="nav-link" href="#" onclick="onClickHome()">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#" onclick="onClickEditUser()">Account Settings</a>
+</li>
+<li class="nav-item">
+        <a class="nav-link" href="#" onclick="onClickSignUp()">SignUp</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#" onclick="onClickLogin()">Login</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#">Logout</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<!-- Message bar -->
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-8 alert alert-primary" id="msgBar">Hello World</div>
+    </div>
+</div>
+
+<!-- Home -->
+<div class="container" id="pgHome">
+    <div class="row justify-content-center">
+    <div class="col-auto"><h1>Home</h1></div>
+    </div>
+
+    <div class="row justify-content-center">
+    <form>
+        <div class="col-4">
+        <input type="button" class="btn btn-default" onclick="onClickSignUp()" value="Sign Up">
+        </div>
+        <div class="col-4">
+        <input type="button" class="btn btn-default" onclick="onClickLogin()" value="Log In">
+        </div>
+    </form>
+    </div>
+</div>
+
+
+
+<!-- Sign Up -->
+<div class="container no-display" id="pgSignUp">
+<div class="row justify-content-center">
+<div class="col-8"><h1>Sign Up</h1></div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-8">
+<form id="frmSignUp">
+    <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" name="firstName" placeholder="First name" value="Me">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" name="lastName" placeholder="Last name" value="Yo">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Email" value="me@example.com">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password" value="secret123">
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="agree" checked> I agree to the Terms of Use</label>
+    </div>
+    <button type="button" class="btn btn-default" onclick="onSignUp()">Submit</button>
+</form>
+</div>
+</div>
+</div>
+
+
+
+<!-- Account Settings / Update User -->
+<div class="container no-display" id="pgEditUser">
+<div class="row justify-content-center">
+<div class="col-8"><h1>Edit Info</h1></div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-8">
+<form id="frmEditUser">
+    <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" name="firstName" placeholder="First name" required>
+        <div class="invalid-feedback">The value is required</div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" name="lastName" placeholder="Last name" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Email" required>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+</div>
+</div>
+        
+
+
+<!-- Login -->
+<div class="container no-display" id="pgLogin">
+<div class="row justify-content-center">
+<div class="col-8"><h1>Login</h1></div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-8">
+<form id="frmLogin">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+    <button type="button" class="btn btn-default" onclick="onLogin()">Submit</button>
+</form>
+</div>
+</div>
+</div>
+
+
+
+<!-- Dashboard -->
+<div class="container no-display" id="pgDashboard">
+<div class="row justify-content-center">
+<div class="col-8"><h1>Dashboard</h1></div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-8">
+</div>
+</div>
+</div>
+    
+
+</body>
+</html>
