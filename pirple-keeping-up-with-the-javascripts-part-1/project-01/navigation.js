@@ -1,8 +1,3 @@
-/*
-(function() {
-})();
-*/
-
 const Navigation = {
     HOME_PAGE: 'pgHome',
     SIGN_UP_PAGE: 'pgSignUp',
@@ -36,7 +31,6 @@ const Navigation = {
         pgDashboard: {
             id: 'pgDashboard',
         }
-
     }
 };
 
@@ -45,6 +39,7 @@ Navigation.showPage = function(id) {
 
     let elm = null;
 
+    Navigation.refreshMenu();
     Navigation.closeMessage();
 
     elm = document.getElementById(Navigation.states.activePage);
@@ -83,3 +78,29 @@ Navigation.closeMessage = function() {
     elm.classList.remove('alert', 'alert-primary', 'alert-danger');
     elm.innerText = '';
 };
+
+Navigation.refreshMenu = function() {
+    const user = Storage.getLoginUser();
+    const isLogin = user !== null;
+
+    for (let elmId of ['navLogout', 'navAccSttg']) {
+        const elm = document.getElementById(elmId);
+console.log(`xXx elmId 1 [${elmId}][isLogin=${isLogin}]`);
+        if (isLogin) { // show when login
+            elm.classList.remove('no-display');
+        } else {
+            elm.classList.add('no-display');
+        }
+    }
+
+    for (let elmId of ['navLogin', 'navSignUp']) {
+        const elm = document.getElementById(elmId);
+console.log(`xXx elmId 2 [${elmId}][isLogin=${isLogin}]`);
+        if (isLogin) { // hide when login
+            elm.classList.add('no-display');
+        } else {
+            elm.classList.remove('no-display');
+        }
+    }
+
+}

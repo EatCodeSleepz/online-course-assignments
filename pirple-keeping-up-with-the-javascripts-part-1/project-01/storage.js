@@ -6,7 +6,8 @@ I'm aware that in real app, can't trust frontend. We do need to validate at back
 */
 
 const Storage = {
-    USER: 'USR'
+    USER: 'USR',
+    LOGIN: 'LGN'
 };
 
 Storage.getUserById = function(userId) {
@@ -63,4 +64,24 @@ Storage.getAllUsers = function() {
     }
 
     return result;
+}
+
+/* session storage */
+Storage.setLoginUserId = function(userId) {
+    if (userId === null) return null;
+
+    sessionStorage.setItem(Storage.LOGIN, userId + '');
+}
+
+Storage.getLoginUser = function() {
+    const userId = sessionStorage.getItem(Storage.LOGIN);
+    if (userId === null) return null;
+
+    const user = Storage.getUserById(userId);
+
+    return user;
+}
+
+Storage.clearUserLogin = function() {
+    sessionStorage.removeItem(Storage.LOGIN);
 }

@@ -7,12 +7,15 @@ function onClickSignUp() {
 }
 
 function onClickEditUser() {
-
-    Navigation.showPage(Navigation.EDIT_USER_PAGE);
+    onEditUserInit();
 }
 
 function onClickLogin() {
     Navigation.showPage(Navigation.LOGIN_PAGE);
+}
+
+function onClickLogout() {
+    onLogout();
 }
 
 function onSignUp() {
@@ -77,16 +80,58 @@ function onLogin() {
         return;
     }
 
-    
-
+    Storage.setLoginUserId(user.userId);
     Navigation.showPage(Navigation.DASHBOARD_PAGE);
     Navigation.showOkMessage(`Welcome ${user.firstName} ${user.lastName}`);
 }
 
-function onEditUser() {
-
+function onLogout() {
+    Storage.clearUserLogin();
+    Navigation.showPage(Navigation.HOME_PAGE);
+    Navigation.showOkMessage(`Thank you.`);
 }
 
-window.onload = function() {
-    Navigation.showPage(Navigation.HOME_PAGE);
-};
+function onEditUserInit() {
+    const user = Storage.getLoginUser();
+    if (user === null) throw Error('No login user found');
+
+    const frm = document.getElementById('frmEditUser');
+    frm.userId.value = user.userId;
+    frm.firstName.value = user.firstName;
+    frm.lastName.value = user.lastName;
+    frm.email.value = user.email;
+
+    Navigation.showPage(Navigation.EDIT_USER_PAGE);
+}
+
+function onEditUser() {
+    const user = Storage.getLoginUser();
+    if (user === null) throw Error('No login user found');
+
+    const elmFrm = document.getElementById('frmEditUser');
+
+    const userId = Number.parseInt(elmFrm.userId.value);
+    if (user.userId !== userId) throw Error(`Invalid operation [${user.userId}][${userId}]`);
+
+    user.firstName = elmFrm.firstName.value;
+    user.lastName = elmFrm.lastName.value;
+    user.email = elmFrm.email.value;
+
+    let valResult = null;
+    valResult = Validation.validateStringNotEmpty('Must not empty', 'First name', user.firstName, valResult);
+    valResult = Validation.validateStringNotEmpty('Must not empty', 'Last name', user.lastName, valResult);
+    valResult = Validation.validateEmail('Invalid', 'Email', user.email, valResult);
+
+    if (valResult !== null) {
+        const errMsg = Validation.constructSimpleErrorMsg(valResult);
+        Navigation.showErrorMessage(errMsg);
+        return;
+    }
+
+    try { Storage.updateUser(user); } catch(err) {
+        Navigation.showErrorMessage(`Error ${err}`);
+        return;
+    }
+
+    Navigation.showOkMessage(`Update success.`);
+}
